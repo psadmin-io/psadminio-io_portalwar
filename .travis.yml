@@ -27,6 +27,7 @@ matrix:
 branches:
   only:
     - production
+    - /^feature/
     - /^v\d/
 notifications:
   email: false
