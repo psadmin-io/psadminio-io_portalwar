@@ -9,6 +9,8 @@
 #   include io_portalwar::cookie_name
 
 class io_portalwar::cookie_name (
+  $ensure          = $io_portalwar::params::ensure,
+  $platform        = $io_portalwar::params::platform,
   $pia_domain_list = $io_portalwar::params::pia_domain_list,
   $pia_cookie_name = $io_portalwar::params::pia_cookie_name,
 ) inherits io_portalwar::params {
@@ -21,13 +23,21 @@ class io_portalwar::cookie_name (
       $pia_cookie_name = "${domain_name}-PSJSESSIONID"
     }
 
-    notify { "domain: ${domain_name}" :}
-
-    augeas { "${domain_name} weblogic.xml cookie-name" :
-      lens    => 'Xml.lns',
-      incl    => "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/weblogic.xml",
-      context => "/files/${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/weblogic.xml/weblogic-web-app/session-descriptor/cookie-name",
-      changes => "set #text ${pia_cookie_name}",
+    if ( $platform == 'WIN' ) {
+      file_line { "${domain_name} weblogic.xml cookie-name" :
+        ensure => $ensure,
+        path   => "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/weblogic.xml",
+        line   => "  <cookie-name>${pia_cookie_name}</cookie-name>",
+        match  => '^\s\s<cookie-name>',
+      }
+    }
+    else {
+      augeas { "${domain_name} weblogic.xml cookie-name" :
+        lens    => 'Xml.lns',
+        incl    => "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/weblogic.xml",
+        context => "/files/${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/weblogic.xml/weblogic-web-app/session-descriptor/cookie-name",
+        changes => "set #text ${pia_cookie_name}",
+      }
     }
   }
 }
