@@ -13,7 +13,7 @@
 #   include io_portalwar::psserver_shuf
 class io_portalwar::psserver_shuf (
   $pia_domain_list = $io_portalwar::params::pia_domain_list,
-  $configprop      = $io_portalwar::params::config_prop,
+  $configprop      = $io_portalwar::params::configprop,
   $psserver_list   = $io_portalwar::params::psserver_list,
 ){
 
