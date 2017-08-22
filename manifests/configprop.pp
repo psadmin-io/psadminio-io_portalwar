@@ -12,7 +12,6 @@
 class io_portalwar::configprop (
   $pia_domain_list = $io_portalwar::params::pia_domain_list,
   $configprop      = $io_portalwar::params::config_prop,
-  $psserver_list   = $io_portalwar::params::psserver_list,
 ){
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
