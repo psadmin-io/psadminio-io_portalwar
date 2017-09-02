@@ -37,4 +37,8 @@ class io_portalwar (
   if ($io_portalwar::rename_pia_cookie) {
     contain ::io_portalwar::cookie_name
   }
+
+  if ($io_portalwar::signon_page) {
+    contain ::io_portalwar::signon_page
+  }
 }
