@@ -11,8 +11,6 @@ class io_portalwar (
   $psserver_list             = undef,
 ){
 
-  #contain ::io_portalwar::configprop
-  #contain ::io_portalwar::psserver_shuf
   case $::osfamily {
     'AIX':     {
       $platform = 'AIX'
@@ -34,7 +32,7 @@ class io_portalwar (
     contain ::io_portalwar::index_redirect
   }
 
-  if ($io_portalwar::rename_pia_cookie) {
+  if ($io_portalwar::pia_cookie_name) {
     contain ::io_portalwar::cookie_name
   }
 
