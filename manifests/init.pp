@@ -9,6 +9,7 @@ class io_portalwar (
   $pia_cookie_name           = undef,
   $configprop                = undef,
   $psserver_list             = undef,
+  $signon_page               = undef,
 ){
 
   case $::osfamily {

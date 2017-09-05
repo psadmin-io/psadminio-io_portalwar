@@ -45,6 +45,33 @@ The very basic steps needed for a user to get the module up and running. This ca
 
 This section is where you describe how to customize, configure, and do the fancy stuff with your module here. It's especially helpful if you include usage examples and code samples for doing things with your module.
 
+### Custom Signon Page
+
+```yaml
+io_portalwar::source: "/tmp/"
+io_portalwar::signon_page:
+  "%{hiera('db_name')}":
+    root:
+      - logo.png
+    portal:
+      - bootstrap.min.css
+      - bootstrap.min.js
+      - bootstrap-theme.min.css
+      - logo.png
+    psftdocs:
+      - custom.html
+      - custom.js
+      - logo.png
+```
+
+The `io_portalwar::source` value is used for all the files. 
+
+* The `root` array is for files to be deployed under the `PORTAL.war` folder. 
+* The `portal` array is for files to be deployed under the `PORTAL.war\site_name` folder.
+* The `psftdocs` array is for files to be deployed under the `PORTAL.war\WEB-INF\psftdocs\site_name` folder.
+
+
+
 ## Reference
 
 Users need a complete list of your module's classes, types, defined types providers, facts, and functions, along with the parameters for each. You can provide this list either via Puppet Strings code comments or as a complete list in the README Reference section.
