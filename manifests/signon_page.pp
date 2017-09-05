@@ -32,8 +32,7 @@ class io_portalwar::signon_page (
         }
       }
     } else {
-      notify { 'No root files to deploy': } 
-      
+      notify { 'No root custom files to deploy': }  
     }
 
     $site_list   = $pia_domain_info['site_list']
@@ -43,20 +42,29 @@ class io_portalwar::signon_page (
       $site_portal = "${portalwar}/${site_name}"
       $site_psftdocs = "${portalwar}/WEB-INF/psftdocs/${site_name}"
 
-      $files['portal'].each | $file | {
-        file {"${site_portal}/${file}":
-          ensure => $ensure,
-          source => $source,
+      if ($files['portal']) {
+        $files['portal'].each | $file | {
+          file {"${site_portal}/${file}":
+            ensure => $ensure,
+            source => $source,
+          }
         }
-      }
-      $files['psftdocs'].each | $file | {
-        file {"${site_psftdocs}/${file}":
-          ensure => $ensure,
-          source => $source,
-        }
-      }
+      } else {
+        notify { 'No portal custom files to deploy': } 
+      } # end if 'portal'
 
-    }
-  }
+      if ($files['psftdocs']) {
+        $files['psftdocs'].each | $file | {
+          file {"${site_psftdocs}/${file}":
+            ensure => $ensure,
+            source => $source,
+          }
+        }
+      }  else {
+        notify { 'No psftdocs custom files to deploy': } 
+      } # end if 'psftdocs'
+
+    } # end site_list
+  } # end pia_domain_list
 
 }
