@@ -11,6 +11,7 @@ class io_portalwar (
   $psserver_list             = undef,
   $signon_page               = undef,
   $text_properties           = undef,
+  $favicons                  = undef,
 ){
 
   notify{'Applying module io_portalwar':}
@@ -56,7 +57,7 @@ class io_portalwar (
     contain ::io_portalwar::text_properties
   }
 
-  if ($io_portalwar::favicons_archive) {
+  if ($io_portalwar::favicons) {
     contain ::io_portalwar::favicons
   }
 }
