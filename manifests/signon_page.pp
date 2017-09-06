@@ -12,7 +12,6 @@ class io_portalwar::signon_page (
   $pia_domain_list  = $io_portalwar::pia_domain_list,
   $source           = $io_portalwar::source,
   $signon_page      = $io_portalwar::signon_page,
-
 ) inherits io_portalwar {
   notify { 'Deplying Custom Signon Pages': }
 

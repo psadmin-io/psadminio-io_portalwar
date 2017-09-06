@@ -10,7 +10,10 @@ class io_portalwar (
   $configprop                = undef,
   $psserver_list             = undef,
   $signon_page               = undef,
+  $text_properties           = undef,
 ){
+
+  notify{'Applying module io_portalwar':}
 
   case $::osfamily {
     'AIX':     {
@@ -37,7 +40,12 @@ class io_portalwar (
     contain ::io_portalwar::cookie_name
   }
 
+  notify {"Signon: ${io_portalwar::signon_page}":}
   if ($io_portalwar::signon_page) {
     contain ::io_portalwar::signon_page
+  }
+  notify {"Debugging ${io_portalwar::text_properties}":}
+  if ($io_portalwar::text_properties) {
+    contain ::io_portalwar::text_properties
   }
 }
