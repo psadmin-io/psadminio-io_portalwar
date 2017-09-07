@@ -31,7 +31,7 @@ class io_portalwar::signon_page (
         }
       }
     } else {
-      notify { 'No root custom files to deploy': }  
+      notify { "${domain_name} No root custom files to deploy": }  
     }
 
     $site_list   = $pia_domain_info['site_list']
@@ -49,7 +49,7 @@ class io_portalwar::signon_page (
           }
         }
       } else {
-        notify { 'No portal custom files to deploy': } 
+        notify { "${domain_name} ${site_name} No portal custom files to deploy": } 
       } # end if 'portal'
 
       if ($files['psftdocs']) {
@@ -60,7 +60,7 @@ class io_portalwar::signon_page (
           }
         }
       }  else {
-        notify { 'No psftdocs custom files to deploy': } 
+        notify { "${domain_name} ${site_name} No psftdocs custom files to deploy": } 
       } # end if 'psftdocs'
 
     } # end site_list

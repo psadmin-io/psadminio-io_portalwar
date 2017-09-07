@@ -11,6 +11,7 @@ class io_portalwar (
   $psserver_list             = undef,
   $signon_page               = undef,
   $text_properties           = undef,
+  $config_properties         = undef,
   $favicons                  = undef,
 ){
 
@@ -53,6 +54,10 @@ class io_portalwar (
     contain ::io_portalwar::signon_page
   }
 
+  if ($io_portalwar::config_properties) {
+    contain ::io_portalwar::config_properties
+  }
+  
   if ($io_portalwar::text_properties) {
     contain ::io_portalwar::text_properties
   }
