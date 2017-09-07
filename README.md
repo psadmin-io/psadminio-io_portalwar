@@ -50,7 +50,7 @@ This section is where you describe how to customize, configure, and do the fancy
 ```yaml
 io_portalwar::source: "/tmp/"
 io_portalwar::signon_page:
-  "%{hiera('db_name')}":
+  "%{hiera('pia_domain_name')}":
     root:
       - logo.png
     portal:
@@ -70,7 +70,35 @@ The `io_portalwar::source` value is used for all the files.
 * The `portal` array is for files to be deployed under the `PORTAL.war\site_name` folder.
 * The `psftdocs` array is for files to be deployed under the `PORTAL.war\WEB-INF\psftdocs\site_name` folder.
 
+### Configuration.properties
 
+```yaml
+io_portalwar::config_properties:
+  "%{hiera('pia_domain_name')}":
+    WebProfile: EXTERNAL
+```
+
+### Text.properties
+
+```yaml
+io_portalwar::text_properties:
+  "%{hiera('pia_domain_name')}":
+    '138':  'Signon to the Test Environment'
+    '8998': 'Custom Message'
+```
+
+### Rename the Cookie
+
+```yaml
+io_portalwar::pia_cookie_name: "%{hiera('db_name')}-PORTAL-PSJSESSIONID"
+```
+
+### index.html Redirect
+
+```yaml
+io_portalwar::index_redirect: true
+io_portalwar::redirect_target: "./%{hiera('pia_site_name')}/signon.html"
+```
 
 ## Reference
 
