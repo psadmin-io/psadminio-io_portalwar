@@ -9,11 +9,11 @@
 #   include io_portalwar::cookie_name
 
 class io_portalwar::cookie_name (
-  $ensure          = $io_portalwar::params::ensure,
-  $platform        = $io_portalwar::params::platform,
-  $pia_domain_list = $io_portalwar::params::pia_domain_list,
-  $pia_cookie_name = $io_portalwar::params::pia_cookie_name,
-) inherits io_portalwar::params {
+  $ensure          = $io_portalwar::ensure,
+  $platform        = $io_portalwar::platform,
+  $pia_domain_list = $io_portalwar::pia_domain_list,
+  $pia_cookie_name = $io_portalwar::pia_cookie_name,
+) inherits io_portalwar {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
