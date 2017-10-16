@@ -9,6 +9,8 @@ class io_portalwar (
   $configprop                = ::io_portalwar::params::configprop,
   $psserver_list             = ::io_portalwar::params::psserver_list,
   $platform                  = ::io_portalwar::params::platform,
+  $signon_page               = ::io_portalwar::params::signon_page,
+  $text_properties           = ::io_portalwar::params::text_properties,
 ) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)
@@ -22,5 +24,13 @@ class io_portalwar (
 
   if ($rename_pia_cookie) {
     contain ::io_portalwar::cookie_name
+  }
+
+  if ($signon_page) {
+    contain ::io_portalwar::signon_page
+  }
+
+  if ($text_properties) {
+    contain ::io_portalwar::text_properties
   }
 }
