@@ -1,51 +1,36 @@
 class io_portalwar (
-  $ensure                    = hiera('ensure', 'present'),
-  $psft_install_user_name    = hiera('psft_install_user_name', undef),
-  $oracle_install_group_name = hiera('oracle_install_group_name', undef),
-  $domain_user               = hiera('domain_user', undef),
-  $pia_domain_list           = hiera_hash('pia_domain_list'),
-  $index_redirect            = false,
-  $redirect_target           = './ps/signon.html',
-  $pia_cookie_name           = undef,
-  $configprop                = undef,
-  $psserver_list             = undef,
-  $signon_page               = undef,
-  $text_properties           = undef,
-){
-
-  notify{'Applying module io_portalwar':}
-
-  case $::osfamily {
-    'AIX':     {
-      $platform = 'AIX'
-    }
-    'Solaris': {
-      $platform = 'SOLARIS'
-    }
-    'windows': {
-      $platform = 'WIN'
-    }
-    default:   {
-      $platform = 'LINUX'
-    }
-  }
+  $ensure                    = ::io_portalwar::params::ensure,
+  $pia_domain_list           = ::io_portalwar::params::pia_domain_list,
+  $psft_runtime_user_name    = ::io_portalwar::params::psft_runtime_user_name,
+  $oracle_install_group_name = ::io_portalwar::params::oracle_install_group_name,
+  $index_redirect            = ::io_portalwar::params::index_redirect,
+  $redirect_target           = ::io_portalwar::params::redirect_target,
+  $pia_cookie_name           = ::io_portalwar::params::pia_cookie_name,
+  $configprop                = ::io_portalwar::params::configprop,
+  $psserver_list             = ::io_portalwar::params::psserver_list,
+  $platform                  = ::io_portalwar::params::platform,
+  $signon_page               = ::io_portalwar::params::signon_page,
+  $text_properties           = ::io_portalwar::params::text_properties,
+) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)
 
-  if ($io_portalwar::index_redirect) {
+  #contain ::io_portalwar::configprop
+  #contain ::io_portalwar::psserver_shuf
+
+  if ($index_redirect) {
     contain ::io_portalwar::index_redirect
   }
 
-  if ($io_portalwar::pia_cookie_name) {
+  if ($rename_pia_cookie) {
     contain ::io_portalwar::cookie_name
   }
 
-  notify {"Signon: ${io_portalwar::signon_page}":}
-  if ($io_portalwar::signon_page) {
+  if ($signon_page) {
     contain ::io_portalwar::signon_page
   }
-  notify {"Debugging ${io_portalwar::text_properties}":}
-  if ($io_portalwar::text_properties) {
+
+  if ($text_properties) {
     contain ::io_portalwar::text_properties
   }
 }
