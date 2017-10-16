@@ -13,7 +13,7 @@ class io_portalwar::cookie_name (
   $platform        = $io_portalwar::platform,
   $pia_domain_list = $io_portalwar::pia_domain_list,
   $pia_cookie_name = $io_portalwar::pia_cookie_name,
-) inherits io_portalwar {
+) {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 

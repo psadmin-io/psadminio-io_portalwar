@@ -13,7 +13,7 @@ class io_portalwar::index_redirect (
   $redirect_target           = $io_portalwar::redirect_target,
   $psft_runtime_user_name    = $io_portalwar::psft_runtime_user_name,
   $oracle_install_group_name = $io_portalwar::oracle_install_group_name,
-) inherits io_portalwar {
+) {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
