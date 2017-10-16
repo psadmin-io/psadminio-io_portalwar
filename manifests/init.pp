@@ -1,29 +1,15 @@
 class io_portalwar (
-  $ensure                    = hiera('ensure', 'present'),
-  $pia_domain_list           = hiera_hash('pia_domain_list'),
-  $psft_runtime_user_name    = hiera('psft_install_user_name'),
-  $oracle_install_group_name = hiera('oracle_install_group_name'),
-  $index_redirect            = false,
-  $redirect_target           = './ps/signon.html',
-  $pia_cookie_name           = undef,
-  $configprop                = undef,
-  $psserver_list             = undef,
-){
-
-  case $::facts['os']['name'] {
-    'AIX':     {
-      $platform = 'AIX'
-    }
-    'Solaris': {
-      $platform = 'SOLARIS'
-    }
-    'windows': {
-      $platform = 'WIN'
-    }
-    default:   {
-      $platform = 'LINUX'
-    }
-  }
+  $ensure                    = ::io_portalwar::params::ensure,
+  $pia_domain_list           = ::io_portalwar::params::pia_domain_list,
+  $psft_runtime_user_name    = ::io_portalwar::params::psft_runtime_user_name,
+  $oracle_install_group_name = ::io_portalwar::params::oracle_install_group_name,
+  $index_redirect            = ::io_portalwar::params::index_redirect,
+  $redirect_target           = ::io_portalwar::params::redirect_target,
+  $pia_cookie_name           = ::io_portalwar::params::pia_cookie_name,
+  $configprop                = ::io_portalwar::params::configprop,
+  $psserver_list             = ::io_portalwar::params::psserver_list,
+  $platform                  = ::io_portalwar::params::platform,
+) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)
 
