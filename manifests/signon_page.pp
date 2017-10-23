@@ -25,7 +25,7 @@ class io_portalwar::signon_page (
     $portalwar = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war"
     if ($files['root']) {
       $files['root'].each | $file | {
-        file {"{portalwar}/${file}":
+        file {"${portalwar}/${file}":
           ensure => $ensure,
           source => $source,
         }
