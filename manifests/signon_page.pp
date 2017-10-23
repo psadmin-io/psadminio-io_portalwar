@@ -26,8 +26,11 @@ class io_portalwar::signon_page (
     if ($files['root']) {
       $files['root'].each | $file | {
         file {"${portalwar}/${file}":
-          ensure => $ensure,
-          source => $source,
+          ensure  => $ensure,
+          source  => "${source}/${file}",
+          owner   => $psft_runtime_user_name,
+          group   => $psft_runtime_group_name,
+          mode    => '0644',
         }
       }
     } else {
@@ -44,8 +47,11 @@ class io_portalwar::signon_page (
       if ($files['portal']) {
         $files['portal'].each | $file | {
           file {"${site_portal}/${file}":
-            ensure => $ensure,
-            source => $source,
+            ensure  => $ensure,
+            source  => "${source}/${file}",
+            owner   => $psft_runtime_user_name,
+            group   => $psft_runtime_group_name,
+            mode    => '0644',
           }
         }
       } else {
@@ -55,8 +61,11 @@ class io_portalwar::signon_page (
       if ($files['psftdocs']) {
         $files['psftdocs'].each | $file | {
           file {"${site_psftdocs}/${file}":
-            ensure => $ensure,
-            source => $source,
+            ensure  => $ensure,
+            source  => "${source}/${file}",
+            owner   => $psft_runtime_user_name,
+            group   => $psft_runtime_group_name,
+            mode    => '0644',
           }
         }
       }  else {
