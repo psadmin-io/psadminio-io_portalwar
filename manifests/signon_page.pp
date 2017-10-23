@@ -25,14 +25,17 @@ class io_portalwar::signon_page (
     $portalwar = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war"
     if ($files['root']) {
       $files['root'].each | $file | {
-        file {"{portalwar}/${file}":
-          ensure => $ensure,
-          source => $source,
+        file {"${portalwar}/${file}":
+          ensure  => $ensure,
+          source  => "${source}/${file}",
+          owner   => $psft_runtime_user_name,
+          group   => $psft_runtime_group_name,
+          mode    => '0644',
         }
       }
     } else {
-      notify { 'No root custom files to deploy': }  
-    }
+      notify { "${domain_name} No root custom files to deploy": }  
+    } # end of 'root'
 
     $site_list   = $pia_domain_info['site_list']
     $site_list.each |$site_name, $site_info| {
@@ -44,23 +47,29 @@ class io_portalwar::signon_page (
       if ($files['portal']) {
         $files['portal'].each | $file | {
           file {"${site_portal}/${file}":
-            ensure => $ensure,
-            source => $source,
+            ensure  => $ensure,
+            source  => "${source}/${file}",
+            owner   => $psft_runtime_user_name,
+            group   => $psft_runtime_group_name,
+            mode    => '0644',
           }
         }
       } else {
-        notify { 'No portal custom files to deploy': } 
+        notify { "${domain_name} ${site_name} No portal custom files to deploy": } 
       } # end if 'portal'
 
       if ($files['psftdocs']) {
         $files['psftdocs'].each | $file | {
           file {"${site_psftdocs}/${file}":
-            ensure => $ensure,
-            source => $source,
+            ensure  => $ensure,
+            source  => "${source}/${file}",
+            owner   => $psft_runtime_user_name,
+            group   => $psft_runtime_group_name,
+            mode    => '0644',
           }
         }
       }  else {
-        notify { 'No psftdocs custom files to deploy': } 
+        notify { "${domain_name} ${site_name} No psftdocs custom files to deploy": } 
       } # end if 'psftdocs'
 
     } # end site_list
