@@ -24,7 +24,7 @@ class io_portalwar::psserver_shuf (
     $site_list.each |$site_name, $site_info| {
 
       $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/configuration.properties"
-      $defaults = { 'path' => "${config}" }
+      $defaults = { 'path' => $config }
 
       if $cu_pia_psserver_list != undef {
 
@@ -32,10 +32,10 @@ class io_portalwar::psserver_shuf (
         $appsrv_psserver_shuf = join(shuffle($appsrv_psserver_jolt),',')
 
         ini_setting { "${domain_name}, ${site_name} shuffle psserver" :
-          ensure  => present,           
-          path    => $config,           
-          section => '',                
-          setting => 'psserver',        
+          ensure  => present,
+          path    => $config,
+          section => '',
+          setting => 'psserver',
           value   => $appsrv_psserver_shuf,
         }
       }

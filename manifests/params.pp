@@ -1,4 +1,4 @@
-class io_portalwar::params (  
+class io_portalwar::params (
   $ensure                    = hiera('ensure', 'present'),
   $psft_runtime_user_name    = hiera('psft_install_user_name', undef),
   $oracle_install_group_name = hiera('oracle_install_group_name', undef),
