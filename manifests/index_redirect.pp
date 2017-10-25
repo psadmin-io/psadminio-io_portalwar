@@ -16,6 +16,7 @@ class io_portalwar::index_redirect (
 ) {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
+    notify {"Config settings for ${domain_name}: ${pia_domain_info}":}
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
 
     $index = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/index.html"
