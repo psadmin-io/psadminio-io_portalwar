@@ -5,6 +5,8 @@ class io_portalwar::params {
   $index_redirect            = false
   $rename_pia_cookie         = false
   $signon_page               = false
+  $config_properties         = false
+  $favicons                  = false
   $text_properties           = false
   $redirect_target           = './ps/signon.html'
   $pia_domain_list           = undef
