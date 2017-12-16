@@ -1,16 +1,16 @@
 class io_portalwar (
-  $ensure                    = ::io_portalwar::params::ensure,
-  $pia_domain_list           = ::io_portalwar::params::pia_domain_list,
-  $psft_runtime_user_name    = ::io_portalwar::params::psft_runtime_user_name,
-  $oracle_install_group_name = ::io_portalwar::params::oracle_install_group_name,
-  $index_redirect            = ::io_portalwar::params::index_redirect,
-  $redirect_target           = ::io_portalwar::params::redirect_target,
-  $pia_cookie_name           = ::io_portalwar::params::pia_cookie_name,
-  $configprop                = ::io_portalwar::params::configprop,
-  $psserver_list             = ::io_portalwar::params::psserver_list,
-  $platform                  = ::io_portalwar::params::platform,
-  $signon_page               = ::io_portalwar::params::signon_page,
-  $text_properties           = ::io_portalwar::params::text_properties,
+  $ensure                    = $::io_portalwar::params::ensure,
+  $pia_domain_list           = $::io_portalwar::params::pia_domain_list,
+  $psft_runtime_user_name    = $::io_portalwar::params::psft_runtime_user_name,
+  $oracle_install_group_name = $::io_portalwar::params::oracle_install_group_name,
+  $index_redirect            = $::io_portalwar::params::index_redirect,
+  $redirect_target           = $::io_portalwar::params::redirect_target,
+  $pia_cookie_name           = $::io_portalwar::params::pia_cookie_name,
+  $configprop                = $::io_portalwar::params::configprop,
+  $psserver_list             = $::io_portalwar::params::psserver_list,
+  $platform                  = $::io_portalwar::params::platform,
+  $signon_page               = $::io_portalwar::params::signon_page,
+  $text_properties           = $::io_portalwar::params::text_properties,
 ) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)
