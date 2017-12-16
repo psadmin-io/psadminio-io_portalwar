@@ -3,9 +3,9 @@
 # Take an array of appserver hostnames, combine with JOLT port and shuffle the list
 #
 # The Failover for PeopleSoft application servers from webservers works by selecting a
-# random server from the psserver= list in configuration.properties. If the selected 
+# random server from the psserver= list in configuration.properties. If the selected
 # server is non-responsive, the NEXT server in psserver= is used. If an appserver is lost,
-# This pattern results in the next server in the list recieivng a disproportionate share 
+# This pattern results in the next server in the list recieivng a disproportionate share
 # of the system load. To workaround this, we randomize the order of servers in the psserver=
 # so that the "next" server is not consistent accross all web server configs.
 #
@@ -32,10 +32,10 @@ class io_portalwar::psserver_shuf (
         $appsrv_psserver_shuf = join(shuffle($appsrv_psserver_jolt),',')
 
         ini_setting { "${domain_name}, ${site_name} shuffle psserver" :
-          ensure  => present,           
-          path    => $config,           
-          section => '',                
-          setting => 'psserver',        
+          ensure  => present,
+          path    => $config,
+          section => '',
+          setting => 'psserver',
           value   => $appsrv_psserver_shuf,
         }
       }
