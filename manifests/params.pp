@@ -4,6 +4,7 @@ class io_portalwar::params {
   $oracle_install_group_name = 'oinstall'
   $index_redirect            = false
   $rename_pia_cookie         = false
+  $signon_page               = false
   $redirect_target           = './ps/signon.html'
   $pia_domain_list           = undef
   $pia_cookie_name           = undef
