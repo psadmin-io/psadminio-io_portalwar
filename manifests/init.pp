@@ -11,6 +11,7 @@ class io_portalwar (
   $platform                  = $::io_portalwar::params::platform,
   $signon_page               = $::io_portalwar::params::signon_page,
   $text_properties           = $::io_portalwar::params::text_properties,
+  rename_pia_cookie          = $::io_portalwar::params::rename_pia_cookie,
 ) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)

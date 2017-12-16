@@ -3,6 +3,7 @@ class io_portalwar::params {
   $psft_runtime_user_name    = 'psadm1'
   $oracle_install_group_name = 'oinstall'
   $index_redirect            = false
+  $rename_pia_cookie         = false
   $redirect_target           = './ps/signon.html'
   $pia_domain_list           = undef
   $pia_cookie_name           = undef
