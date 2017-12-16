@@ -25,7 +25,7 @@ class io_portalwar::index_redirect (
       ensure  => file,
       content => template('io_portalwar/index.html.erb'),
       owner   => $psft_runtime_user_name,
-      group   => $psft_runtime_group_name,
+      group   => $oracle_install_group_name,
       mode    => '0644',
     }
   }
