@@ -14,6 +14,7 @@ class io_portalwar (
   $config_properties         = $::io_portalwar::params::config_properties,
   $favicons                  = $::io_portalwar::params::favicons,
   $rename_pia_cookie         = $::io_portalwar::params::rename_pia_cookie,
+  $jolt_port                 = $::io_portalwar::params::jolt_port,
 ) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)

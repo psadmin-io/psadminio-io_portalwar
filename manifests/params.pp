@@ -13,6 +13,7 @@ class io_portalwar::params {
   $pia_cookie_name           = undef
   $configprop                = undef
   $psserver_list             = undef
+  $jolt_port                 = undef
 
   case $::osfamily {
     'AIX':     {

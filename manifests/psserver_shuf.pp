@@ -15,6 +15,7 @@ class io_portalwar::psserver_shuf (
   $pia_domain_list = $io_portalwar::pia_domain_list,
   $configprop      = $io_portalwar::configprop,
   $psserver_list   = $io_portalwar::psserver_list,
+  $jolt_port       = $io_portalwar::jolt_port,
 ){
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
