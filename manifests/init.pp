@@ -19,7 +19,9 @@ class io_portalwar (
 
   validate_hash($pia_domain_list)
 
-  #contain ::io_portalwar::psserver_shuf
+  if ($psserver_list) {
+    contain ::io_portalwar::psserver_shuf
+  }
 
   if ($index_redirect) {
     contain ::io_portalwar::index_redirect
