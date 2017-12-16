@@ -14,7 +14,7 @@ class io_portalwar::params {
   $configprop                = undef
   $psserver_list             = undef
 
-  case $::facts['os']['name'] {
+  case $::osfamily {
     'AIX':     {
       $platform = 'AIX'
     }
