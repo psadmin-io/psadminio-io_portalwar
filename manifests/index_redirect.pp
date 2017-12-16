@@ -20,9 +20,6 @@ class io_portalwar::index_redirect (
 
     $index = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/index.html"
 
-    notify { $index : }
-    notify { $domain_name : }
-
     file { $index :
       ensure  => file,
       content => template('io_portalwar/index.html.erb'),
