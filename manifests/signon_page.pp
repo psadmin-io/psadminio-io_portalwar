@@ -19,8 +19,8 @@ class io_portalwar::signon_page (
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
     notify { "Config Home: ${ps_cfg_home_dir}": }
     $files           = $signon_page["${domain_name}"]
-    notify { "Files to deploy: ${files}": } 
-    
+    notify { "Files to deploy: ${files}": }
+
 
     $portalwar = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war"
     if ($files['root']) {
@@ -31,7 +31,7 @@ class io_portalwar::signon_page (
         }
       }
     } else {
-      notify { 'No root custom files to deploy': }  
+      notify { 'No root custom files to deploy': }
     }
 
     $site_list   = $pia_domain_info['site_list']
@@ -49,7 +49,7 @@ class io_portalwar::signon_page (
           }
         }
       } else {
-        notify { 'No portal custom files to deploy': } 
+        notify { 'No portal custom files to deploy': }
       } # end if 'portal'
 
       if ($files['psftdocs']) {
@@ -60,7 +60,7 @@ class io_portalwar::signon_page (
           }
         }
       }  else {
-        notify { 'No psftdocs custom files to deploy': } 
+        notify { 'No psftdocs custom files to deploy': }
       } # end if 'psftdocs'
 
     } # end site_list
