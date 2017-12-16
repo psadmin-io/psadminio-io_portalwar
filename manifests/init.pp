@@ -32,6 +32,10 @@ class io_portalwar (
     contain ::io_portalwar::signon_page
   }
 
+  if ($config_properties) {
+    contain ::io_portalwar::config_properties
+  }
+
   if ($text_properties) {
     contain ::io_portalwar::text_properties
   }
@@ -43,5 +47,4 @@ class io_portalwar (
   if ($favicons) {
     contain ::io_portalwar::favicons
   }
-
 }
