@@ -14,7 +14,7 @@ class io_portalwar::config_properties (
   $config_properties = $io_portalwar::config_properties,
 ){
 
-    notify { 'Updating configuration.properties': }
+  notify { 'Updating configuration.properties': }
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
