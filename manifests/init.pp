@@ -14,9 +14,10 @@ class io_portalwar (
   $config_properties         = $::io_portalwar::params::config_properties,
   $favicons                  = $::io_portalwar::params::favicons,
   $rename_pia_cookie         = $::io_portalwar::params::rename_pia_cookie,
+  $source                    = $::io_portalwar::params::source,
 ) inherits ::io_portalwar::params {
 
-  validate_hash($pia_domain_list)
+  if $pia_domain_list { validate_hash($pia_domain_list) }
 
   #contain ::io_portalwar::psserver_shuf
 
@@ -38,10 +39,6 @@ class io_portalwar (
 
   if ($text_properties) {
     contain ::io_portalwar::text_properties
-  }
-
-  if ($config_properties) {
-    contain ::io_portalwar::config_properties
   }
 
   if ($favicons) {
