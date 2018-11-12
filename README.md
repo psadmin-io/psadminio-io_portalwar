@@ -63,7 +63,8 @@ The `io_portalwar::source` value is used for all the files.
 ```yaml
 io_portalwar::config_properties:
   "%{hiera('pia_domain_name')}":
-    WebProfile: EXTERNAL
+    "%{hiera('pia_site_name')}":
+      WebProfile: EXTERNAL
 ```
 
 ### Text.properties
@@ -71,8 +72,9 @@ io_portalwar::config_properties:
 ```yaml
 io_portalwar::text_properties:
   "%{hiera('pia_domain_name')}":
-    '138':  'Signon to the Test Environment'
-    '8998': 'Custom Message'
+    "%{hiera('pia_site_name')}":
+      '138':  'Signon to the Test Environment'
+      '8998': 'Custom Message'
 ```
 
 ### Rename the Cookie
