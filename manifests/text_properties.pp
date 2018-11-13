@@ -17,10 +17,10 @@ class io_portalwar::text_properties (
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
 
-    $properties = $text_properties[$domain_name]
     $site_list   = $pia_domain_info['site_list']
     $site_list.each |$site_name, $site_info| {
 
+        $properties = $text_properties[$domain_name][$site_name]
         $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/text.properties"
         $properties.each | $setting, $value | {
 

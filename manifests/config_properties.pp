@@ -19,10 +19,9 @@ class io_portalwar::config_properties (
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
 
-    $properties = $config_properties[$domain_name]
     $site_list   = $pia_domain_info['site_list']
     $site_list.each |$site_name, $site_info| {
-
+        $properties = $config_properties[$domain_name][$site_name]
         $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/configuration.properties"
         $properties.each | $setting, $value | {
 
