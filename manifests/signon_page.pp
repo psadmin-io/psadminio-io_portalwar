@@ -17,9 +17,9 @@ class io_portalwar::signon_page (
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
-    notify { "Config Home: ${ps_cfg_home_dir}": }
+    notify { "${domain_name}-Config Home: ${ps_cfg_home_dir}": }
     $files           = $signon_page["${domain_name}"]
-    notify { "Files to deploy: ${files}": }
+    notify { "${domain_name}-Files to deploy: ${files}": }
 
 
     $portalwar = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war"
@@ -27,7 +27,7 @@ class io_portalwar::signon_page (
       $files['root'].each | $file | {
         file {"${portalwar}/${file}":
           ensure => $ensure,
-          source => "${source}/${file}",
+          source => "/u01/software/dpkfiles/piafiles/${file}",
           owner  => $psft_runtime_user_name,
           group  => $psft_runtime_group_name,
           mode   => '0644',
@@ -44,34 +44,35 @@ class io_portalwar::signon_page (
       $site_portal = "${portalwar}/${site_name}"
       $site_psftdocs = "${portalwar}/WEB-INF/psftdocs/${site_name}"
 
-      if ($files['portal']) {
-        $files['portal'].each | $file | {
-          file {"${site_portal}/${file}":
-            ensure => $ensure,
-            source => "${source}/${file}",
-            owner  => $psft_runtime_user_name,
-            group  => $psft_runtime_group_name,
-            mode   => '0644',
+      if ($files[$site_name]) {
+        if ($files[$site_name]['portal']) {
+          $files[$site_name]['portal'].each | $file | {
+            file {"${site_portal}/${file}":
+              ensure => $ensure,
+              source => "/u01/software/dpkfiles/piafiles/${file}",
+              owner  => $psft_runtime_user_name,
+              group  => $psft_runtime_group_name,
+              mode   => '0644',
+            }
           }
-        }
-      } else {
-        notify { "${domain_name} ${site_name} No portal custom files to deploy": }
-      } # end if 'portal'
+        } else {
+          notify { "${domain_name} ${site_name} No portal custom files to deploy": }
+        } # end if 'portal'
 
-      if ($files['psftdocs']) {
-        $files['psftdocs'].each | $file | {
-          file {"${site_psftdocs}/${file}":
-            ensure => $ensure,
-            source => "${source}/${file}",
-            owner  => $psft_runtime_user_name,
-            group  => $psft_runtime_group_name,
-            mode   => '0644',
+        if ($files[$site_name]['psftdocs']) {
+          $files[$site_name]['psftdocs'].each | $file | {
+            file {"${site_psftdocs}/${file}":
+              ensure => $ensure,
+              source => "/u01/software/dpkfiles/piafiles/${file}",
+              owner  => $psft_runtime_user_name,
+              group  => $psft_runtime_group_name,
+              mode   => '0644',
+            }
           }
-        }
-      }  else {
-        notify { "${domain_name} ${site_name} No psftdocs custom files to deploy": }
-      } # end if 'psftdocs'
-
+        }  else {
+          notify { "${domain_name} ${site_name} No psftdocs custom files to deploy": }
+        } # end if 'psftdocs'
+      } # end site files loop
     } # end site_list
   } # end pia_domain_list
 

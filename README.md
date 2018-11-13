@@ -41,15 +41,16 @@ io_portalwar::signon_page:
   "%{hiera('pia_domain_name')}":
     root:
       - logo.png
-    portal:
-      - bootstrap.min.css
-      - bootstrap.min.js
-      - bootstrap-theme.min.css
-      - logo.png
-    psftdocs:
-      - custom.html
-      - custom.js
-      - logo.png
+    "%{hiera('pia_site_name')}":
+      portal:
+        - bootstrap.min.css
+        - bootstrap.min.js
+        - bootstrap-theme.min.css
+        - logo.png
+      psftdocs:
+        - custom.html
+        - custom.js
+        - logo.png
 ```
 
 The `io_portalwar::source` value is used for all the files. 
