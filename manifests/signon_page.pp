@@ -18,13 +18,13 @@ class io_portalwar::signon_page (
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
     notify { "${domain_name}-Config Home: ${ps_cfg_home_dir}": }
-    $files           = $signon_page["${domain_name}"]
+    $root_files = $pia_domain_info['io_portalwar::signon_page::root']
     notify { "${domain_name}-Files to deploy: ${files}": }
 
 
     $portalwar = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war"
-    if ($files['root']) {
-      $files['root'].each | $file | {
+    if ($root_files) {
+      $root_files.each | $file | {
         file {"${portalwar}/${file}":
           ensure => $ensure,
           source => "/u01/software/dpkfiles/piafiles/${file}",
@@ -43,10 +43,11 @@ class io_portalwar::signon_page (
       # Deploy files to PORTAL.war/site_name
       $site_portal = "${portalwar}/${site_name}"
       $site_psftdocs = "${portalwar}/WEB-INF/psftdocs/${site_name}"
+      $site_files = $site_info['io_portalwar::signon_page::site']
 
-      if ($files[$site_name]) {
-        if ($files[$site_name]['portal']) {
-          $files[$site_name]['portal'].each | $file | {
+      if ($site_files) {
+        if ($site_files['portal']) {
+          $site_files['portal'].each | $file | {
             file {"${site_portal}/${file}":
               ensure => $ensure,
               source => "/u01/software/dpkfiles/piafiles/${file}",
@@ -59,8 +60,8 @@ class io_portalwar::signon_page (
           notify { "${domain_name} ${site_name} No portal custom files to deploy": }
         } # end if 'portal'
 
-        if ($files[$site_name]['psftdocs']) {
-          $files[$site_name]['psftdocs'].each | $file | {
+        if ($site_files['psftdocs']) {
+          $site_files['psftdocs'].each | $file | {
             file {"${site_psftdocs}/${file}":
               ensure => $ensure,
               source => "/u01/software/dpkfiles/piafiles/${file}",

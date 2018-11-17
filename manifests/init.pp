@@ -54,10 +54,6 @@ case $::osfamily {
     contain ::io_portalwar::text_properties
   }
 
-  if ($config_properties) {
-    contain ::io_portalwar::config_properties
-  }
-
   if ($favicons) {
     contain ::io_portalwar::favicons
   }

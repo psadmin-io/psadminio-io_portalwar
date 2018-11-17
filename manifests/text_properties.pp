@@ -20,7 +20,8 @@ class io_portalwar::text_properties (
     $site_list   = $pia_domain_info['site_list']
     $site_list.each |$site_name, $site_info| {
 
-        $properties = $text_properties[$domain_name][$site_name]
+        $properties = $site_info['io_portalwar::text_properties']
+        if $properties {
         $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/text.properties"
         $properties.each | $setting, $value | {
 
@@ -31,6 +32,7 @@ class io_portalwar::text_properties (
             setting => $setting,
             value   => $value,
           }
+        }
         }
 
     } # end site_list
