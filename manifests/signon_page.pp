@@ -27,7 +27,7 @@ class io_portalwar::signon_page (
       $files['root'].each | $file | {
         file {"${portalwar}/${file}":
           ensure => $ensure,
-          source => "/u01/software/dpkfiles/piafiles/${file}",
+          source => "${source}/${file}",
           owner  => $psft_runtime_user_name,
           group  => $psft_runtime_group_name,
           mode   => '0644',
@@ -49,7 +49,7 @@ class io_portalwar::signon_page (
           $files[$site_name]['portal'].each | $file | {
             file {"${site_portal}/${file}":
               ensure => $ensure,
-              source => "/u01/software/dpkfiles/piafiles/${file}",
+              source => "${source}/${file}",
               owner  => $psft_runtime_user_name,
               group  => $psft_runtime_group_name,
               mode   => '0644',
@@ -63,7 +63,7 @@ class io_portalwar::signon_page (
           $files[$site_name]['psftdocs'].each | $file | {
             file {"${site_psftdocs}/${file}":
               ensure => $ensure,
-              source => "/u01/software/dpkfiles/piafiles/${file}",
+              source => "${source}/${file}",
               owner  => $psft_runtime_user_name,
               group  => $psft_runtime_group_name,
               mode   => '0644',
