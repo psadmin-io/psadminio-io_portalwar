@@ -1,8 +1,6 @@
 
 # io_portalwar
 
-This was updated by me for conf 2019!
-
 #### Table of Contents
 
 1. [Description](#description)
