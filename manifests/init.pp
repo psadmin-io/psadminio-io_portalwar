@@ -13,6 +13,7 @@ class io_portalwar (
   $pia_cookie_name           = hiera('pia_cookie_name', undef),
   $configprop                = hiera('configprop', undef),
   $psserver_list             = hiera('psserver_list', undef),
+  $source                    = undef,
 ) {
 
 case $::osfamily {

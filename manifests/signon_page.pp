@@ -12,6 +12,8 @@ class io_portalwar::signon_page (
   $pia_domain_list  = $io_portalwar::pia_domain_list,
   $source           = $io_portalwar::source,
   $signon_page      = $io_portalwar::signon_page,
+  $psft_runtime_user_name    = $io_portalwar::psft_runtime_user_name
+  $oracle_install_group_name = $io_portalwar::oracle_install_group_name
 ) inherits io_portalwar {
   notify { 'Deplying Custom Signon Pages': }
 
@@ -29,8 +31,9 @@ class io_portalwar::signon_page (
           ensure => $ensure,
           source => "${source}/${file}",
           owner  => $psft_runtime_user_name,
-          group  => $psft_runtime_group_name,
+          group  => $oracle_install_group_name,
           mode   => '0644',
+          recurse => true,
         }
       }
     } else {
@@ -51,8 +54,9 @@ class io_portalwar::signon_page (
               ensure => $ensure,
               source => "${source}/${file}",
               owner  => $psft_runtime_user_name,
-              group  => $psft_runtime_group_name,
+              group  => $oracle_install_group_name,
               mode   => '0644',
+              recurse => true,
             }
           }
         } else {
@@ -65,8 +69,9 @@ class io_portalwar::signon_page (
               ensure => $ensure,
               source => "${source}/${file}",
               owner  => $psft_runtime_user_name,
-              group  => $psft_runtime_group_name,
+              group  => $oracle_install_group_name,
               mode   => '0644',
+              recurse => true,
             }
           }
         }  else {
