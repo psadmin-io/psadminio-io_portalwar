@@ -7,7 +7,7 @@ class io_portalwar (
   $signon_page               = hiera('signon_page', false),
   $config_properties         = hiera('config_properties', false),
   $favicons                  = hiera('favicons', false),
-  $text_properties           = hiera('text_properties', false),
+  $text_properties           = hiera('io_portalwar::text_properties', false),
   $redirect_target           = hiera('redirect_target', './ps/signon.html'),
   $pia_domain_list           = hiera('pia_domain_list', undef),
   $pia_cookie_name           = hiera('pia_cookie_name', undef),
