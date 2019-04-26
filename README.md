@@ -97,4 +97,6 @@ io_portalwar::redirect_target: "./%{hiera('pia_site_name')}/signon.html"
 
 ## Development
 
+> Dan was here, so beware.
+
 ## Release Notes
