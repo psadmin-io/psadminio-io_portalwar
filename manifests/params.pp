@@ -9,7 +9,7 @@ class io_portalwar::params {
   $favicons                  = false
   $text_properties           = false
   $redirect_target           = './ps/signon.html'
-  $pia_domain_list           = undef
+  $pia_domain_list           = hiera_hash('pia_domain_list')
   $pia_cookie_name           = undef
   $configprop                = undef
   $psserver_list             = undef
