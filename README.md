@@ -3,6 +3,8 @@
 
 This is Kyle's change.
 
+This is Dale's change.
+
 #### Table of Contents
 
 1. [Description](#description)
