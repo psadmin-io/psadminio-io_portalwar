@@ -1,6 +1,6 @@
 {
   "name": "psadminio-io_portalwar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": "Eric Bolinger",
   "summary": "Configure various settings in the WebLogic Domain servlet PORTAL.war for Peoplesoft to complement the DPK",
   "license": "Apache-2.0",
@@ -12,7 +12,7 @@
     },
     {
       "name":"puppetlabs-inifile",
-      "version_requirement":">= 1.5.0 < 3"
+      "version_requirement":">= 1.5.0 < 3.0.0"
     }
   ],
   "operatingsystem_support": [
