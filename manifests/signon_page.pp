@@ -23,9 +23,9 @@ class io_portalwar::signon_page (
 
     $portalwar = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war"
     if ($files['root']) {
-      $files['root'].each | $file | {
+      notify { "Deplying Custom Signon Pages - ${domain_name} Root": }
 
-        notify { "Deplying Custom Signon Pages - ${domain_name} Root": }
+      $files['root'].each | $file | {
 
         file {"${portalwar}/${file}":
           ensure => $ensure,
@@ -47,9 +47,9 @@ class io_portalwar::signon_page (
       $site_psftdocs = "${portalwar}/WEB-INF/psftdocs/${site_name}"
 
       if ($files['portal']) {
-        $files['portal'].each | $file | {
+        notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} Portal": }
 
-          notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} Portal": }
+        $files['portal'].each | $file | {
 
           file {"${site_portal}/${file}":
             ensure => $ensure,
@@ -64,9 +64,9 @@ class io_portalwar::signon_page (
       } # end if 'portal'
 
       if ($files['psftdocs']) {
-        $files['psftdocs'].each | $file | {
+        notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} psftdocs": }
 
-          notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} psftdocs": }
+        $files['psftdocs'].each | $file | {
 
           file {"${site_psftdocs}/${file}":
             ensure => $ensure,
