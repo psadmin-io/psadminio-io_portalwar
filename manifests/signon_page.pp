@@ -25,7 +25,7 @@ class io_portalwar::signon_page (
     if ($files['root']) {
       $files['root'].each | $file | {
 
-        notify { 'Deplying Custom Signon Pages - Root': }
+        notify { "Deplying Custom Signon Pages - ${domain_name} Root": }
 
         file {"${portalwar}/${file}":
           ensure => $ensure,
@@ -49,7 +49,7 @@ class io_portalwar::signon_page (
       if ($files['portal']) {
         $files['portal'].each | $file | {
 
-          notify { 'Deplying Custom Signon Pages - Portal': }
+          notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} Portal": }
 
           file {"${site_portal}/${file}":
             ensure => $ensure,
@@ -66,7 +66,7 @@ class io_portalwar::signon_page (
       if ($files['psftdocs']) {
         $files['psftdocs'].each | $file | {
 
-          notify { 'Deplying Custom Signon Pages - psftdocs': }
+          notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} psftdocs": }
 
           file {"${site_psftdocs}/${file}":
             ensure => $ensure,
