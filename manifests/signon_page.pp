@@ -13,18 +13,20 @@ class io_portalwar::signon_page (
   $source           = $io_portalwar::source,
   $signon_page      = $io_portalwar::signon_page,
 ) inherits io_portalwar {
-  notify { 'Deplying Custom Signon Pages': }
-
-  $pia_domain_list.each |$domain_name, $pia_domain_info| {
+  
+    $pia_domain_list.each |$domain_name, $pia_domain_info| {
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
-    notify { "Config Home: ${ps_cfg_home_dir}": }
+    # notify { "Config Home: ${ps_cfg_home_dir}": }
     $files           = $signon_page["${domain_name}"]
-    notify { "Files to deploy: ${files}": }
+    # notify { "Files to deploy: ${files}": }
 
 
     $portalwar = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war"
     if ($files['root']) {
       $files['root'].each | $file | {
+
+        notify { 'Deplying Custom Signon Pages - Root': }
+
         file {"${portalwar}/${file}":
           ensure => $ensure,
           source => "${source}/${file}",
@@ -34,7 +36,7 @@ class io_portalwar::signon_page (
         }
       }
     } else {
-      notify { "${domain_name} No root custom files to deploy": }
+      # notify { "${domain_name} No root custom files to deploy": }
     } # end of 'root'
 
     $site_list   = $pia_domain_info['site_list']
@@ -46,6 +48,9 @@ class io_portalwar::signon_page (
 
       if ($files['portal']) {
         $files['portal'].each | $file | {
+
+          notify { 'Deplying Custom Signon Pages - Portal': }
+
           file {"${site_portal}/${file}":
             ensure => $ensure,
             source => "${source}/${file}",
@@ -55,11 +60,14 @@ class io_portalwar::signon_page (
           }
         }
       } else {
-        notify { "${domain_name} ${site_name} No portal custom files to deploy": }
+        # notify { "${domain_name} ${site_name} No portal custom files to deploy": }
       } # end if 'portal'
 
       if ($files['psftdocs']) {
         $files['psftdocs'].each | $file | {
+
+          notify { 'Deplying Custom Signon Pages - psftdocs': }
+
           file {"${site_psftdocs}/${file}":
             ensure => $ensure,
             source => "${source}/${file}",
@@ -69,7 +77,7 @@ class io_portalwar::signon_page (
           }
         }
       }  else {
-        notify { "${domain_name} ${site_name} No psftdocs custom files to deploy": }
+        # notify { "${domain_name} ${site_name} No psftdocs custom files to deploy": }
       } # end if 'psftdocs'
 
     } # end site_list
