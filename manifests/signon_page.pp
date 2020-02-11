@@ -49,10 +49,10 @@ class io_portalwar::signon_page (
         $site_portal = "${portalwar}/${site_name}"
         $site_psftdocs = "${portalwar}/WEB-INF/psftdocs/${site_name}"
 
-        if ($files['portal']) {
+        if ($files[$site_name]['portal']) {
           notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} Portal": }
 
-          $files['portal'].each | $file | {
+          $files[$site_name]['portal'].each | $file | {
 
             file {"${site_portal}/${file}":
               ensure => $ensure,
@@ -66,10 +66,10 @@ class io_portalwar::signon_page (
           notify { "${domain_name} ${site_name} No portal custom files to deploy": }
         } # end if 'portal'
 
-        if ($files['psftdocs']) {
+        if ($files[$site_name]['psftdocs']) {
           notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} psftdocs": }
 
-          $files['psftdocs'].each | $file | {
+          $files[$site_name]['psftdocs'].each | $file | {
 
             file {"${site_psftdocs}/${file}":
               ensure => $ensure,
