@@ -11,10 +11,11 @@ class io_portalwar (
   $platform                  = $::io_portalwar::params::platform,
   $signon_page               = $::io_portalwar::params::signon_page,
   $text_properties           = $::io_portalwar::params::text_properties,
-  $config_properties         = $::io_portalwar::params::config_properties,
   $error_properties          = $::io_portalwar::params::error_properties,
+  $config_properties         = $::io_portalwar::params::config_properties,
   $favicons                  = $::io_portalwar::params::favicons,
   $rename_pia_cookie         = $::io_portalwar::params::rename_pia_cookie,
+  $source                    = $::io_portalwar::params::source,
 ) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)
@@ -39,6 +40,10 @@ class io_portalwar (
 
   if ($text_properties) {
     contain ::io_portalwar::text_properties
+  }
+
+  if ($error_properties) {
+    contain ::io_portalwar::error_properties
   }
 
   if ($config_properties) {

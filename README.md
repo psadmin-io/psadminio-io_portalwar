@@ -77,6 +77,14 @@ io_portalwar::text_properties:
       '138':  'Signon to the Test Environment'
       '8998': 'Custom Message'
 ```
+### Error.properties
+
+```yaml
+io_portalwar::error_properties:
+  "%{hiera('pia_domain_name')}":
+    "%{hiera('pia_site_name')}":
+      '105':  'Your User ID or Password is invalid.'
+```
 
 ### Rename the Cookie
 
