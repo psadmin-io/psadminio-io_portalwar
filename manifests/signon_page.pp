@@ -8,17 +8,19 @@
 # @example
 #   include io_portalwar::signon_page
 class io_portalwar::signon_page (
-  $ensure           = $io_portalwar::ensure,
-  $pia_domain_list  = $io_portalwar::pia_domain_list,
-  $source           = $io_portalwar::source,
-  $signon_page      = $io_portalwar::signon_page,
+  $ensure                  = $io_portalwar::ensure,
+  $pia_domain_list         = $io_portalwar::pia_domain_list,
+  $source                  = $io_portalwar::source,
+  $signon_page             = $io_portalwar::signon_page,
+  $psft_runtime_user_name  = $io_portalwar::psft_runtime_user_name,
+  $psft_runtime_group_name = $io_portalwar::psft_runtime_group_name,
 ) inherits io_portalwar {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
     # notify { "Config Home: ${ps_cfg_home_dir}": }
-    $files           = $signon_page["${domain_name}"]
+    $files           = $signon_page[$domain_name]
     if ($files) {
       notify { "Files to deploy: ${files}": }
 
@@ -49,7 +51,9 @@ class io_portalwar::signon_page (
         $site_portal = "${portalwar}/${site_name}"
         $site_psftdocs = "${portalwar}/WEB-INF/psftdocs/${site_name}"
 
+        # Check if io_portalwar::signon_page has this site listed
         if has_key($files, $site_name) {
+
           if ($files[$site_name]['portal']) {
             notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} Portal": }
 
@@ -84,8 +88,10 @@ class io_portalwar::signon_page (
             notify { "${domain_name} ${site_name} No psftdocs custom files to deploy": }
           } # end if 'psftdocs'
         } # has_key $site_name
+
       } # end site_list
-    }
+    } # if site_list
+
   } # end pia_domain_list
 
 }

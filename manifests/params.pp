@@ -1,12 +1,12 @@
 class io_portalwar::params {
   $ensure                    = 'present'
-  $index_redirect            = false
-  $rename_pia_cookie         = false
-  $signon_page               = false
-  $config_properties         = false
-  $favicons                  = false
-  $text_properties           = false
-  $error_properties          = false
+  $index_redirect            = undef
+  $rename_pia_cookie         = undef
+  $signon_page               = undef
+  $config_properties         = undef
+  $favicons                  = undef
+  $text_properties           = undef
+  $error_properties          = undef
   $redirect_target           = './ps/signon.html'
   $pia_domain_list           = hiera_hash('pia_domain_list')
   $pia_cookie_name           = undef
