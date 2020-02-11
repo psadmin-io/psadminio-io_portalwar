@@ -46,14 +46,6 @@ class io_portalwar (
     contain ::io_portalwar::error_properties
   }
 
-  if ($config_properties) {
-    contain ::io_portalwar::config_properties
-  }
-
-  if ($error_properties) {
-    contain ::io_portalwar::error_properties
-  }
-
   if ($favicons) {
     contain ::io_portalwar::favicons
   }
