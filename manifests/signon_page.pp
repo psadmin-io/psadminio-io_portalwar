@@ -49,40 +49,41 @@ class io_portalwar::signon_page (
         $site_portal = "${portalwar}/${site_name}"
         $site_psftdocs = "${portalwar}/WEB-INF/psftdocs/${site_name}"
 
-        if ($files[$site_name]['portal']) {
-          notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} Portal": }
+        if has_key($files, $site_name) {
+          if ($files[$site_name]['portal']) {
+            notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} Portal": }
 
-          $files[$site_name]['portal'].each | $file | {
+            $files[$site_name]['portal'].each | $file | {
 
-            file {"${site_portal}/${file}":
-              ensure => $ensure,
-              source => "${source}/${file}",
-              owner  => $psft_runtime_user_name,
-              group  => $psft_runtime_group_name,
-              mode   => '0644',
+              file {"${site_portal}/${file}":
+                ensure => $ensure,
+                source => "${source}/${file}",
+                owner  => $psft_runtime_user_name,
+                group  => $psft_runtime_group_name,
+                mode   => '0644',
+              }
             }
-          }
-        } else {
-          notify { "${domain_name} ${site_name} No portal custom files to deploy": }
-        } # end if 'portal'
+          } else {
+            notify { "${domain_name} ${site_name} No portal custom files to deploy": }
+          } # end if 'portal'
 
-        if ($files[$site_name]['psftdocs']) {
-          notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} psftdocs": }
+          if ($files[$site_name]['psftdocs']) {
+            notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} psftdocs": }
 
-          $files[$site_name]['psftdocs'].each | $file | {
+            $files[$site_name]['psftdocs'].each | $file | {
 
-            file {"${site_psftdocs}/${file}":
-              ensure => $ensure,
-              source => "${source}/${file}",
-              owner  => $psft_runtime_user_name,
-              group  => $psft_runtime_group_name,
-              mode   => '0644',
+              file {"${site_psftdocs}/${file}":
+                ensure => $ensure,
+                source => "${source}/${file}",
+                owner  => $psft_runtime_user_name,
+                group  => $psft_runtime_group_name,
+                mode   => '0644',
+              }
             }
-          }
-        }  else {
-          notify { "${domain_name} ${site_name} No psftdocs custom files to deploy": }
-        } # end if 'psftdocs'
-
+          }  else {
+            notify { "${domain_name} ${site_name} No psftdocs custom files to deploy": }
+          } # end if 'psftdocs'
+        } # has_key $site_name
       } # end site_list
     }
   } # end pia_domain_list
