@@ -12,6 +12,7 @@ class io_portalwar (
   $signon_page               = $::io_portalwar::params::signon_page,
   $text_properties           = $::io_portalwar::params::text_properties,
   $config_properties         = $::io_portalwar::params::config_properties,
+  $error_properties          = $::io_portalwar::params::error_properties,
   $favicons                  = $::io_portalwar::params::favicons,
   $rename_pia_cookie         = $::io_portalwar::params::rename_pia_cookie,
 ) inherits ::io_portalwar::params {
@@ -42,6 +43,10 @@ class io_portalwar (
 
   if ($config_properties) {
     contain ::io_portalwar::config_properties
+  }
+
+  if ($error_properties) {
+    contain ::io_portalwar::error_properties
   }
 
   if ($favicons) {
