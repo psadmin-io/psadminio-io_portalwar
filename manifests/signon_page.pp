@@ -52,7 +52,7 @@ class io_portalwar::signon_page (
         $site_psftdocs = "${portalwar}/WEB-INF/psftdocs/${site_name}"
 
         # Check if io_portalwar::signon_page has this site listed
-        if has_key($files, $site_name) {
+        if ($site_name in $files) {
 
           if ($files[$site_name]['portal']) {
             notify { "Deplying Custom Signon Pages - ${domain_name}-${site_name} Portal": }
