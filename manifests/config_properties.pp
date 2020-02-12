@@ -21,20 +21,22 @@ class io_portalwar::config_properties (
 
     $properties = $config_properties[$domain_name]
     $site_list   = $pia_domain_info['site_list']
-    $site_list.each |$site_name, $site_info| {
+    if ($site_list) {
+      $site_list.each |$site_name, $site_info| {
 
-        $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/configuration.properties"
-        $properties.each | $setting, $value | {
+          $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/configuration.properties"
+          $properties.each | $setting, $value | {
 
-          ini_setting { "${domain_name}, ${site_name} ${setting} ${value}" :
-            ensure  => present,
-            path    => $config,
-            section => '',
-            setting => $setting,
-            value   => $value,
-          }
+            ini_setting { "${domain_name}, ${site_name} ${setting} ${value}" :
+              ensure  => present,
+              path    => $config,
+              section => '',
+              setting => $setting,
+              value   => $value,
+            }
         }
-
-    } # end site_list
+      } # end site_list
+    }
   } # end pia_domain_list
 }
+
