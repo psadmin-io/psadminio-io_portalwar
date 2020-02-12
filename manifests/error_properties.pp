@@ -21,17 +21,19 @@ class io_portalwar::error_properties (
     $site_list.each |$site_name, $site_info| {
 
         $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/error.properties"
-        $properties = $error_properties[$domain_name][$site_name]
-        $properties.each | $setting, $value | {
+        if ($site_name in $error_properties[$domain_name]) {
+          $properties = $error_properties[$domain_name][$site_name]
+          $properties.each | $setting, $value | {
 
-          ini_setting { "${domain_name}, ${site_name} ${setting} ${value}" :
-            ensure  => present,
-            path    => $config,
-            section => '',
-            setting => $setting,
-            value   => $value,
+            ini_setting { "${domain_name}, ${site_name} ${setting} ${value}" :
+              ensure  => present,
+              path    => $config,
+              section => '',
+              setting => $setting,
+              value   => $value,
+            }
           }
-        }
+        } # check for site_name
 
     } # end site_list
   } # end pia_domain_list

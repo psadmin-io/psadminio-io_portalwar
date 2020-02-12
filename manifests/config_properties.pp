@@ -19,12 +19,13 @@ class io_portalwar::config_properties (
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
 
-    $properties = $config_properties[$domain_name]
     $site_list   = $pia_domain_info['site_list']
     if ($site_list) {
       $site_list.each |$site_name, $site_info| {
 
-          $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/configuration.properties"
+        $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/configuration.properties"
+        if ($site_name in $config_properties[$domain_name]) {
+          $properties = $config_properties[$domain_name][$site_name]
           $properties.each | $setting, $value | {
 
             ini_setting { "${domain_name}, ${site_name} ${setting} ${value}" :
@@ -34,7 +35,9 @@ class io_portalwar::config_properties (
               setting => $setting,
               value   => $value,
             }
+          }
         }
+
       } # end site_list
     }
   } # end pia_domain_list
