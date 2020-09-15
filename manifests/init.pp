@@ -2,7 +2,7 @@ class io_portalwar (
   $ensure                    = $::io_portalwar::params::ensure,
   $pia_domain_list           = $::io_portalwar::params::pia_domain_list,
   $psft_runtime_user_name    = $::io_portalwar::params::psft_runtime_user_name,
-  $oracle_install_group_name = $::io_portalwar::params::oracle_install_group_name,
+  $psft_runtime_group_name   = $::io_portalwar::params::psft_runtime_group_name,
   $index_redirect            = $::io_portalwar::params::index_redirect,
   $redirect_target           = $::io_portalwar::params::redirect_target,
   $pia_cookie_name           = $::io_portalwar::params::pia_cookie_name,

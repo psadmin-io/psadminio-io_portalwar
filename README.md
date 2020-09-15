@@ -99,10 +99,3 @@ io_portalwar::index_redirect: true
 io_portalwar::redirect_target: "./%{hiera('pia_site_name')}/signon.html"
 ```
 
-## Reference
-
-## Limitations
-
-## Development
-
-## Release Notes
