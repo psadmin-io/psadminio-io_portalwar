@@ -12,7 +12,7 @@ class io_portalwar::index_redirect (
   $pia_domain_list           = $io_portalwar::pia_domain_list,
   $redirect_target           = $io_portalwar::redirect_target,
   $psft_runtime_user_name    = $io_portalwar::psft_runtime_user_name,
-  $oracle_install_group_name = $io_portalwar::oracle_install_group_name,
+  $psft_runtime_group_name   = $io_portalwar::psft_runtime_group_name,
 ) {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
@@ -25,7 +25,7 @@ class io_portalwar::index_redirect (
       ensure  => file,
       content => template('io_portalwar/index.html.erb'),
       owner   => $psft_runtime_user_name,
-      group   => $oracle_install_group_name,
+      group   => $psft_runtime_group_name,
       mode    => '0644',
     }
   }

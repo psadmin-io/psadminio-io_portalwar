@@ -20,15 +20,9 @@ This module is used to configure various settings in the WebLogic Domain servlet
 ## Setup
 
 ### Setup Requirements
-<<<<<<< HEAD
 
 This module has a requirement of the puppetlabs/inifile module. https://forge.puppet.com/puppetlabs/inifile
 
-=======
-
-This module has a requirement of the puppetlabs/inifile module. https://forge.puppet.com/puppetlabs/inifile
-
->>>>>>> 3f5ded824fc7f23fe430453df01a99d2a9660dee
 If you are using PeopleTools 8.55, that version of Puppet will need version 1.6.0 of the `inifile` module.
 
 ### Beginning with io_portalwar  
@@ -82,8 +76,6 @@ io_portalwar::text_properties:
     "%{hiera('pia_site_name')}":
       '138':  'Signon to the Test Environment'
       '8998': 'Custom Message'
-<<<<<<< HEAD
-=======
 ```
 ### Error.properties
 
@@ -92,7 +84,6 @@ io_portalwar::error_properties:
   "%{hiera('pia_domain_name')}":
     "%{hiera('pia_site_name')}":
       '105':  'Your User ID or Password is invalid.'
->>>>>>> 3f5ded824fc7f23fe430453df01a99d2a9660dee
 ```
 
 ### Rename the Cookie
@@ -108,10 +99,3 @@ io_portalwar::index_redirect: true
 io_portalwar::redirect_target: "./%{hiera('pia_site_name')}/signon.html"
 ```
 
-## Reference
-
-## Limitations
-
-## Development
-
-## Release Notes

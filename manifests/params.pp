@@ -18,22 +18,22 @@ class io_portalwar::params {
     'AIX':     {
       $platform = 'AIX'
       $psft_runtime_user_name    = 'psadm1'
-      $oracle_install_group_name = 'oinstall'
+      $psft_runtime_group_name = 'oinstall'
     }
     'Solaris': {
       $platform = 'SOLARIS'
       $psft_runtime_user_name    = 'psadm1'
-      $oracle_install_group_name = 'oinstall'
+      $psft_runtime_group_name = 'oinstall'
     }
     'windows': {
       $platform = 'WIN'
       $psft_runtime_user_name = hiera('domain_user')
-      $oracle_install_group_name = 'S-1-5-32-544' #administrators
+      $psft_runtime_group_name = 'S-1-5-32-544' #administrators
     }
     default:   {
       $platform = 'LINUX'
       $psft_runtime_user_name    = 'psadm2'
-      $oracle_install_group_name = 'oinstall'
+      $psft_runtime_group_name = 'oinstall'
     }
   }
 }
