@@ -11,13 +11,8 @@
       "version_requirement": ">= 4.5.1 < 5.0.0"
     },
     {
-<<<<<<< HEAD
-      "name": "puppetlabs-inifile",
-      "version_requirement": ">= 1.5.0 < 3"
-=======
       "name":"puppetlabs-inifile",
       "version_requirement":">= 1.5.0 < 3.0.0"
->>>>>>> 3f5ded824fc7f23fe430453df01a99d2a9660dee
     }
   ],
   "operatingsystem_support": [
