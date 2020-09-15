@@ -15,7 +15,7 @@ class io_portalwar::favicons (
   $favicons                 = $io_portalwar::favicons,
   $extract_command          = $io_portalwar::extract_command,
   $fileowner                = $io_portalwar::fileowner,
-  $oracle_install_user_name = $io_portalwar::oracle_install_user_name,
+  $psft_runtime_group_name  = $io_portalwar::psft_runtime_group_name,
 ) inherits io_portalwar {
   notify { 'Deplying favicons.zip': }
 
@@ -33,7 +33,7 @@ class io_portalwar::favicons (
       -> archive {"Extract favicons.zip ${domain_name} ${site_name}":
         ensure          => $ensure,
         user            => $fileowner,
-        group           => $oracle_install_user_name,
+        group           => $psft_runtime_group_name,
         extract         => true,
         source          => "${source}/${favicons}",
         extract_path    => $root_folder,

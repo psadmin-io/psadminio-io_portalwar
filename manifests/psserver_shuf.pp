@@ -26,7 +26,7 @@ class io_portalwar::psserver_shuf (
       $config   = "${ps_cfg_home_dir}/webserv/${domain_name}/applications/peoplesoft/PORTAL.war/WEB-INF/psftdocs/${site_name}/configuration.properties"
       $defaults = { 'path' => $config }
 
-      if $cu_pia_psserver_list != undef {
+      if $psserver_list != undef {
 
         $appsrv_psserver_jolt = $psserver_list[$domain_name][$site_name].map |$s1| { "${s1}:${jolt_port}" }
         $appsrv_psserver_shuf = join(shuffle($appsrv_psserver_jolt),',')
