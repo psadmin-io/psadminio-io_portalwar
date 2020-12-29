@@ -3,7 +3,9 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1">
     <title><%= @domain_name %></title>
-    <META http-equiv="refresh" content="0;URL=<%= @redirect_target %>">
+    <script>
+      window.location.href = "<%= @redirect_target %>" + document.location.search
+    </script>
   </head>
   <body bgcolor="#ffffff" LEFTMARGIN="10" RIGHTMARGIN="10" link="#3366cc" vlink="#9999cc" alink="#0000cc">
   </body>
