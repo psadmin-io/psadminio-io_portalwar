@@ -13,6 +13,9 @@ class io_portalwar::params {
   $configprop                = undef
   $psserver_list             = undef
   $source                    = undef
+  $psft_runtime_user_name    = hiera('psft_runtime_user_name', 'psadm2')
+  $psft_install_user_name    = hiera('psft_install_user_name', 'psadm1')
+  $oracle_install_group_name = hiera('oracle_install_group_name', 'oinstall')
 
   case $::osfamily {
     'AIX':     {
