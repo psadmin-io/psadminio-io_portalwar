@@ -100,3 +100,29 @@ io_portalwar::index_redirect: true
 io_portalwar::redirect_target: "./%{hiera('pia_site_name')}/signon.html"
 ```
 
+### Favicons
+
+```yaml
+# You can source files from an OS path, or from another Puppet module
+# Source is used for favicons and Signon Page features
+# this expects a favicon.zip file in the source directory
+io_portalwar::source: 'puppet:///modules/io_deploy' 
+io_portalwar::favicons: true
+```
+
+### Signon Page Changes
+
+```yaml
+# You can source files from an OS path, or from another Puppet module
+# Source is used for favicons and Signon Page features
+io_portalwar::source: 'puppet:///modules/io_deploy' 
+io_portalwar::signon_page:
+  "%{hiera('db_name')}":
+    root:
+      - robots.txt
+    "%{hiera('pia_site_name')}":
+      portal:
+        - logo.png
+      psftdocs:
+        - signon.html
+```
