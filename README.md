@@ -89,6 +89,7 @@ io_portalwar::error_properties:
 ### Rename the Cookie
 
 ```yaml
+io_portalwar::rename_pia_cookie: true
 io_portalwar::pia_cookie_name: "%{hiera('db_name')}-PORTAL-PSJSESSIONID"
 ```
 
