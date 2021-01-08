@@ -110,19 +110,3 @@ io_portalwar::source: 'puppet:///modules/io_deploy'
 io_portalwar::favicons: true
 ```
 
-### Signon Page Changes
-
-```yaml
-# You can source files from an OS path, or from another Puppet module
-# Source is used for favicons and Signon Page features
-io_portalwar::source: 'puppet:///modules/io_deploy' 
-io_portalwar::signon_page:
-  "%{hiera('db_name')}":
-    root:
-      - robots.txt
-    "%{hiera('pia_site_name')}":
-      portal:
-        - logo.png
-      psftdocs:
-        - signon.html
-```
