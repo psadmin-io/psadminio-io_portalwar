@@ -89,6 +89,7 @@ io_portalwar::error_properties:
 ### Rename the Cookie
 
 ```yaml
+io_portalwar::rename_pia_cookie: true
 io_portalwar::pia_cookie_name: "%{hiera('db_name')}-PORTAL-PSJSESSIONID"
 ```
 
@@ -97,5 +98,15 @@ io_portalwar::pia_cookie_name: "%{hiera('db_name')}-PORTAL-PSJSESSIONID"
 ```yaml
 io_portalwar::index_redirect: true
 io_portalwar::redirect_target: "./%{hiera('pia_site_name')}/signon.html"
+```
+
+### Favicons
+
+```yaml
+# You can source files from an OS path, or from another Puppet module
+# Source is used for favicons and Signon Page features
+# this expects a favicon.zip file in the source directory
+io_portalwar::source: 'puppet:///modules/io_deploy' 
+io_portalwar::favicons: true
 ```
 

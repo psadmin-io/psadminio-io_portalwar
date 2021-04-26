@@ -17,13 +17,15 @@ class io_portalwar::params {
   case $::osfamily {
     'AIX':     {
       $platform = 'AIX'
-      $psft_runtime_user_name    = 'psadm1'
-      $psft_runtime_group_name = 'oinstall'
+      $psft_runtime_user_name    = hiera('psft_runtime_user_name', 'psadm2')
+      $psft_install_user_name    = hiera('psft_install_user_name', 'psadm1')
+      $oracle_install_group_name = hiera('oracle_install_group_name', 'oinstall')
     }
     'Solaris': {
       $platform = 'SOLARIS'
-      $psft_runtime_user_name    = 'psadm1'
-      $psft_runtime_group_name = 'oinstall'
+      $psft_runtime_user_name    = hiera('psft_runtime_user_name', 'psadm2')
+      $psft_install_user_name    = hiera('psft_install_user_name', 'psadm1')
+      $oracle_install_group_name = hiera('oracle_install_group_name', 'oinstall')
     }
     'windows': {
       $platform = 'WIN'
@@ -32,8 +34,9 @@ class io_portalwar::params {
     }
     default:   {
       $platform = 'LINUX'
-      $psft_runtime_user_name    = 'psadm2'
-      $psft_runtime_group_name = 'oinstall'
+      $psft_runtime_user_name    = hiera('psft_runtime_user_name', 'psadm2')
+      $psft_install_user_name    = hiera('psft_install_user_name', 'psadm1')
+      $oracle_install_group_name = hiera('oracle_install_group_name', 'oinstall')
     }
   }
 }
