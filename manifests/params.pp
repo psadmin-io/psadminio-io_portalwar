@@ -8,7 +8,7 @@ class io_portalwar::params {
   $text_properties           = undef
   $error_properties          = undef
   $redirect_target           = './ps/signon.html'
-  $pia_domain_list           = hiera_hash('pia_domain_list')
+  $pia_domain_list           = lookup('pia_domain_list', undef, undef, '')
   $pia_cookie_name           = undef
   $configprop                = undef
   $psserver_list             = undef
