@@ -18,6 +18,7 @@
     - [index.html Redirect](#indexhtml-redirect)
     - [Favicons](#favicons)
     - [Health Check File](#health-check-file)
+    - [Host Information File](#host-information-file)
 
 ## Description
 
@@ -124,3 +125,10 @@ This will create a `health.html` file under `PORTAL.war` that you can use with y
 io_portalwar::healthcheck: 'up'
 ```
 
+### Host Information File
+
+Setting this value will create a file under `PORTAL.war` that sets `hostname-domainname` as the content. This can be used to validate which server a user is connected to in a load balanced environment. The name of the file is configured by enabling the feature and adding `.html` to the name. In the example below, the feature will create `PORTAL.war\hostinfo.html`
+
+```yaml
+io_portalwar::hostinfo: 'hostinfo'
+```

@@ -17,6 +17,7 @@ class io_portalwar (
   $rename_pia_cookie         = $::io_portalwar::params::rename_pia_cookie,
   $source                    = $::io_portalwar::params::source,
   $healthcheck               = $::io_portalwar::params::healthcheck,
+  $hostinfo                  = $::io_portalwar::params::hostinfo,
 ) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)
@@ -53,5 +54,9 @@ class io_portalwar (
 
   if ($healthcheck) {
     contain ::io_portalwar::healthcheck
+  }
+
+  if ($hostinfo) {
+    contain ::io_portalwar::hostinfo
   }
 }
