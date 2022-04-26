@@ -8,7 +8,7 @@
 #
 # @example
 #   include io_portalwar::healthcheck
-class io_portalwar::favicons (
+class io_portalwar::healthcheck (
   $ensure                   = $io_portalwar::ensure,
   $pia_domain_list          = $io_portalwar::pia_domain_list,
   $healthcheck              = $io_portalwar::healthcheck,
