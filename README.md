@@ -3,15 +3,21 @@
 
 #### Table of Contents
 
-1. [Description](#description)
-2. [Setup - The basics of getting started with io_portalwar](#setup)
-    * [What io_portalwar affects](#what-io_portalwar-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with io_portalwar](#beginning-with-io_portalwar)
-3. [Usage - Configuration options and additional functionality](#usage)
-4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+- [io_portalwar](#io_portalwar)
+      - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Setup](#setup)
+    - [Setup Requirements](#setup-requirements)
+    - [Beginning with io_portalwar](#beginning-with-io_portalwar)
+  - [Usage](#usage)
+    - [Custom Signon Page](#custom-signon-page)
+    - [Configuration.properties](#configurationproperties)
+    - [Text.properties](#textproperties)
+    - [Error.properties](#errorproperties)
+    - [Rename the Cookie](#rename-the-cookie)
+    - [index.html Redirect](#indexhtml-redirect)
+    - [Favicons](#favicons)
+    - [Health Check File](#health-check-file)
 
 ## Description
 
@@ -108,5 +114,13 @@ io_portalwar::redirect_target: "./%{hiera('pia_site_name')}/signon.html"
 # this expects a favicon.zip file in the source directory
 io_portalwar::source: 'puppet:///modules/io_deploy' 
 io_portalwar::favicons: true
+```
+
+### Health Check File
+
+This will create a `health.html` file under `PORTAL.war` that you can use with your load balancer health check. The string value in the `io_portalwar::healthcheck` variable will be added the content of the file.
+
+```yaml
+io_portalwar::healthcheck: 'up'
 ```
 
