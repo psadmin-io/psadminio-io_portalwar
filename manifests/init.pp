@@ -16,6 +16,7 @@ class io_portalwar (
   $favicons                  = $::io_portalwar::params::favicons,
   $rename_pia_cookie         = $::io_portalwar::params::rename_pia_cookie,
   $source                    = $::io_portalwar::params::source,
+  $healthcheck               = $::io_portalwar::params::healthcheck,
 ) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)
@@ -48,5 +49,9 @@ class io_portalwar (
 
   if ($favicons) {
     contain ::io_portalwar::favicons
+  }
+
+  if ($healthcheck) {
+    contain ::io_portalwar::healthcheck
   }
 }
