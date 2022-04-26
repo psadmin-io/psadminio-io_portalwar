@@ -13,6 +13,7 @@ class io_portalwar::params {
   $configprop                = undef
   $psserver_list             = undef
   $source                    = undef
+  $healthcheck               = undef
 
   case $::osfamily {
     'AIX':     {
