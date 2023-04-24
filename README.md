@@ -132,3 +132,11 @@ Setting this value will create a file under `PORTAL.war` that sets `hostname-dom
 ```yaml
 io_portalwar::hostinfo: 'hostinfo'
 ```
+
+### robots.txt File
+
+You can deploy a robots.txt that will stop search indexes from crawling your PeopleSoft site's files. This is a good way to keep public pages from showing up in search results. It does not block access to the pages, it's a request to search indexes (like Google) to stop them from indexing your site.
+
+```yaml
+io_portalwar::robots: true
+```

@@ -7,8 +7,8 @@
 # default block for all pages.
 #
 # @example
-#   include io_portalwar::hostinfo
-class io_portalwar::hostinfo (
+#   include io_portalwar::robots
+class io_portalwar::robots (
   $ensure                    = $io_portalwar::ensure,
   $pia_domain_list           = $io_portalwar::pia_domain_list,
   $robots                    = $io_portalwar::robots,
