@@ -19,6 +19,7 @@
     - [Favicons](#favicons)
     - [Health Check File](#health-check-file)
     - [Host Information File](#host-information-file)
+    - [robots.txt](#robots.txt-file)
 
 ## Description
 
