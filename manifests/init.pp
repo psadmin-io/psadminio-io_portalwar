@@ -18,6 +18,7 @@ class io_portalwar (
   $source                    = $::io_portalwar::params::source,
   $healthcheck               = $::io_portalwar::params::healthcheck,
   $hostinfo                  = $::io_portalwar::params::hostinfo,
+  $robots                    = $::io_portalwar::params::robots,
 ) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)
@@ -58,5 +59,9 @@ class io_portalwar (
 
   if ($hostinfo) {
     contain ::io_portalwar::hostinfo
+  }
+
+    if ($robots) {
+    contain ::io_portalwar::robots
   }
 }

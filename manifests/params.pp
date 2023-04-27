@@ -15,6 +15,7 @@ class io_portalwar::params {
   $source                    = undef
   $healthcheck               = undef
   $hostinfo                  = undef
+  $robots                    = undef
 
   case $::osfamily {
     'AIX':     {
