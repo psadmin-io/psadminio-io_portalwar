@@ -38,7 +38,7 @@
 class io_portalwar::psemhub (
   $ensure          = 'absent',
   $pia_domain_list = $io_portalwar::pia_domain_list,
-) {
+) inherits io_portalwar {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 

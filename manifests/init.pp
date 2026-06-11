@@ -19,6 +19,7 @@ class io_portalwar (
   $healthcheck               = $::io_portalwar::params::healthcheck,
   $hostinfo                  = $::io_portalwar::params::hostinfo,
   $robots                    = $::io_portalwar::params::robots,
+  $remove_psemhub            = $::io_portalwar::params::remove_psemhub,
 ) inherits ::io_portalwar::params {
 
   validate_hash($pia_domain_list)
@@ -63,5 +64,9 @@ class io_portalwar (
 
     if ($robots) {
     contain ::io_portalwar::robots
+  }
+
+  if ($remove_psemhub) {
+    contain ::io_portalwar::psemhub
   }
 }
