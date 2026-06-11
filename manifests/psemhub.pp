@@ -20,7 +20,7 @@
 # @example psft_customizations.yaml settings
 #   ---
 #   # Enable this class (io_portalwar/init.pp contains it when true)
-#   remove_psemhub: true
+#   io_portalwar::remove_psemhub: true
 #
 # @example Run this manifest directly with puppet apply (as root)
 #   # DPK_HOME is your DPK base, e.g. /opt/oracle/psft/dpk
@@ -31,7 +31,7 @@
 #
 #   $PS_CFG_HOME/webserv/<domain>/bin/startPIA.sh
 #
-#   # If remove_psemhub: true is already set in psft_customizations.yaml,
+#   # If io_portalwar::remove_psemhub: true is already set in psft_customizations.yaml,
 #   # the -e payload can simply be: 'include ::io_portalwar'
 #   # Note: declare the parent class (not the subclass alone) so
 #   # pia_domain_list and friends resolve from hiera.
