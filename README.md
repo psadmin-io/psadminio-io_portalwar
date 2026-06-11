@@ -20,6 +20,7 @@
     - [Health Check File](#health-check-file)
     - [Host Information File](#host-information-file)
     - [robots.txt](#robotstxt-file)
+    - [Remove PSEMHUB](#remove-psemhub)
 
 ## Description
 
@@ -141,3 +142,47 @@ You can deploy a robots.txt that will stop search indexes from crawling your Peo
 ```yaml
 io_portalwar::robots: true
 ```
+### Remove PSEMHUB
+
+Removes the Environment Management Hub (`PSEMHUB`) web module from the
+deployed PeopleSoft EAR. This implements Oracle's documented fix for
+**CVE-2026-35273** (Oracle Security Alert, June 2026 — CVSS 9.8,
+remotely exploitable without authentication, component: PeopleTools
+Updates - Environment Management, affecting 8.61 and 8.62) for single
+server PIA domains:
+
+1. Removes the `PSEMHUB` `<module>` entry from
+   `applications/peoplesoft/META-INF/application.xml`
+2. Removes the exploded `applications/peoplesoft/PSEMHUB.war` folder
+
+```yaml
+io_portalwar::remove_psemhub: true
+```
+
+Notes:
+
+* Linux, single server PIA domains only. For multi-server domains with
+  a dedicated `PSEMHUB` managed server, stop/disable that managed
+  server instead of using this feature.
+* A PIA bounce is required for the change to take effect on a running
+  domain: stop PIA, run Puppet, start PIA.
+* PIA redeploys and PeopleTools patches will restore `PSEMHUB`.
+  Re-running with this flag set re-removes it, which is what makes the
+  mitigation DPK-durable.
+* EMF is only used by Change Assistant/PUM crawl-and-apply cycles.
+  Leave this feature disabled on the environment you actually run
+  Change Assistant against, and remove the hub everywhere else.
+
+To apply ad hoc without a full DPK run:
+
+```bash
+$PS_CFG_HOME/webserv/<domain>/bin/stopPIA.sh
+
+puppet apply --confdir $DPK_HOME/puppet \
+  -e "class { '::io_portalwar': remove_psemhub => true }"
+
+$PS_CFG_HOME/webserv/<domain>/bin/startPIA.sh
+```
+
+Declare the parent class (not `io_portalwar::psemhub` alone) so
+`pia_domain_list` and related values resolve from hiera.
